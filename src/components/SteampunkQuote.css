@@ -1,0 +1,161 @@
+/* Импортируем винтажный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Основной фон — как старая бумага + латунные оттенки */
+.steampunk-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 30%, #2a2418, #0f0c08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Добавляем декоративные шестерёнки на фон (псевдоэлементами) */
+.steampunk-container::before,
+.steampunk-container::after {
+  content: "";
+  position: absolute;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="rgba(180,130,70,0.15)" d="M50,15 L65,30 L85,30 L90,50 L75,65 L80,85 L50,90 L20,85 L25,65 L10,50 L15,30 L35,30 Z M50,45 A5,5,0,1,1,50,55 A5,5,0,1,1,50,45 Z"/></svg>');
+  background-repeat: repeat;
+  background-size: 80px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+.steampunk-container::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.steampunk-container::after {
+  background-size: 140px;
+  opacity: 0.1;
+}
+
+/* Карточка с цитатой — похожа на металлическую табличку с клёпками */
+.steampunk-card {
+  position: relative;
+  max-width: 800px;
+  background: #fdf8e7;  /* пергамент */
+  background-image: repeating-linear-gradient(45deg, rgba(180, 130, 70, 0.05) 0px, rgba(180, 130, 70, 0.05) 2px, transparent 2px, transparent 8px);
+  border: 12px double #b87c2e;
+  border-radius: 30px 10px 30px 10px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.5), inset 0 1px 4px rgba(255,255,200,0.6);
+  transition: all 0.2s ease;
+}
+
+/* Эффект старых чернил при наведении */
+.steampunk-card:hover {
+  box-shadow: 0 25px 40px rgba(0,0,0,0.7), inset 0 0 8px rgba(210,150,30,0.5);
+}
+
+/* Декоративные шестерни по углам карточки */
+.gear-left,
+.gear-right {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23a86f2c" d="M50,15 L65,30 L85,30 L90,50 L75,65 L80,85 L50,90 L20,85 L25,65 L10,50 L15,30 L35,30 Z M50,45 A5,5,0,1,1,50,55 A5,5,0,1,1,50,45 Z"/></svg>');
+  background-size: contain;
+  opacity: 0.8;
+  animation: spin 20s linear infinite;
+}
+.gear-left {
+  top: -15px;
+  left: -15px;
+}
+.gear-right {
+  bottom: -15px;
+  right: -15px;
+  animation-direction: reverse;
+  animation-duration: 25s;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Текст цитаты — как на печатной машинке */
+.steampunk-quote {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  color: #2c2416;
+  text-shadow: 2px 2px 0 rgba(180, 120, 50, 0.2);
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 0 1rem;
+}
+
+/* Декоративные кавычки (стимпанк) */
+.steampunk-quote::before {
+  content: "“";
+  font-size: 5rem;
+  font-family: serif;
+  position: absolute;
+  left: -20px;
+  top: -30px;
+  color: #b87c2e;
+  opacity: 0.5;
+  text-shadow: none;
+}
+.steampunk-quote::after {
+  content: "”";
+  font-size: 5rem;
+  font-family: serif;
+  position: absolute;
+  right: -20px;
+  bottom: -40px;
+  color: #b87c2e;
+  opacity: 0.5;
+}
+
+/* Футер с иконками и надписью */
+.steampunk-footer {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  color: #7a5a3a;
+  border-top: 1px dashed #c9ad7a;
+  padding-top: 1rem;
+  display: inline-block;
+  width: auto;
+  text-transform: uppercase;
+}
+.cog-icon {
+  display: inline-block;
+  animation: wobble 3s infinite ease-in-out;
+  margin: 0 8px;
+  font-size: 1rem;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(5deg) scale(1.1); }
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 600px) {
+  .steampunk-quote {
+    font-size: 1.2rem;
+  }
+  .steampunk-card {
+    padding: 1.5rem;
+  }
+  .steampunk-quote::before,
+  .steampunk-quote::after {
+    font-size: 3rem;
+  }
+}
